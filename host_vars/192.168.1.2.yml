@@ -1,3 +1,0 @@
-home: "{{ ansible_env.HOME }}"
-interfaces: "{{ ansible_default_ipv4.interface }}"
-ansible_ssh_user: media
