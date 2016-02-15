@@ -1,0 +1,23 @@
+---
+- hosts: media_34555
+  sudo: yes
+  tasks:
+   - name: Add apt-key
+     apt_key:
+      url=http://nginx.org/keys/nginx_signing.key
+      state=present
+   - name: Add Nginx repo to source.list
+     lineinfile: 
+       dest=/etc/apt/sources.list 
+       line="deb http://nginx.org/packages/mainline/{{ distrfamily }} {{ releasename }} nginx"
+   - name: upt update 
+     apt: 
+      update_cache: yes
+   - name: install Nginx
+     apt:
+      name=nginx
+      state=latest
+   - name: start Nginx
+     service:
+      name=nginx
+      state=started
