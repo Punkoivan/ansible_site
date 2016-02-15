@@ -1,0 +1,6 @@
+ansible_ssh_user: media
+remote_port: 34555
+distrfamily: "{{ ansible_distribution | lower }}"
+releasename: "{{ ansible_distribution_release | lower }}"
+sudo: yes
+home: "{{ ansible_env.HOME }}"
