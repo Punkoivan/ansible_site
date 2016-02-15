@@ -1,16 +1,16 @@
 - hosts: media_34555
-  sudo: yes
   tasks:
    - name: git install
      apt:
       name=git
       state=present
+     sudo: yes
    - name: create dir for repo
      file:
-       name=/home/media/site
+       name={{ home }}/site
        state=directory
    - name: Gitclone
      git:
       repo=https://github.com/anechka/portfolio-site.git
-      dest=/home/media/site
+      dest={{ home }}/site
 
