@@ -1,2 +1,3 @@
 # ansible_site
-installing nginx, clone git repo
+Ansible role for deploynig site from git, install and config nginx.
+
