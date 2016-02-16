@@ -10,7 +10,7 @@
      lineinfile: 
        dest=/etc/apt/sources.list 
        line="deb http://nginx.org/packages/mainline/{{ distrfamily }} {{ releasename }} nginx"
-   - name: upt update 
+   - name: apt update 
      apt: 
       update_cache: yes
    - name: install Nginx
