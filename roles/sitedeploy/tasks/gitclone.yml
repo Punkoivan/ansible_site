@@ -1,16 +1,18 @@
-- hosts: media_34555
-  sudo: yes
-  tasks:
-   - name: git install
-     apt:
-      name=git
-      state=present
-   - name: create dir for repo
-     file:
-       name={{ site_root_dir }}
-       state=directory
-   - name: Gitclone
-     git:
-      repo=https://github.com/anechka/portfolio-site.git
-      dest={{ site_root_dir }}
+---
+- name: git install
+  apt:
+   name=git
+   state=present
+- name: delete dir with default Nginx site
+  file:
+   name={{ site_root_dir }}
+   state=absent
+- name: create dir for repo
+  file:
+   name={{ site_root_dir }}
+   state=directory
+- name: Gitclone
+  git:
+   repo=https://github.com/anechka/portfolio-site.git
+   dest={{ site_root_dir }}
 

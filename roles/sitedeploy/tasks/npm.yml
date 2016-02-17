@@ -1,20 +1,17 @@
 ---
-- hosts: media_34555
-  sudo: yes
-  tasks:
-   - name: installing npm on node
-     apt:
-      name=npm
-      state=present
-   - name: installing npm libs from package.json
-     npm: 
-      path={{ site_root_dir }}
-   - name: set symlink
-     file:
-      src=/usr/bin/nodejs
-      dest=/usr/bin/node
-      state=link
-   - name: run gulp
-      command={{ site_root_dir }}/node_modules/.bin/gulp
-      
-     
+- name: installing npm on node
+  apt:
+   name=npm
+   state=present
+- name: installing npm libs from package.json
+  npm:
+   path={{ site_root_dir }}
+- name: set symlink
+  file:
+   src=/usr/bin/nodejs
+   dest=/usr/bin/node
+   state=link
+- name: gulp installation
+  shell: 
+   free_form=sudo ./gulp
+   chdir={{ site_root_dir }}/node_modules/.bin

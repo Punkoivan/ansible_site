@@ -1,5 +1,6 @@
 ---
- - name: installing Nginx and deploy site from git
-   hosts: media_34555
-   roles:
-    - sitedeploy
+- name: installing Nginx and deploy site from git
+  hosts: media_34555
+  sudo: yes
+  roles:
+   - sitedeploy
