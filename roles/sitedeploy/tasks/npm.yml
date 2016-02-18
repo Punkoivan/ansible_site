@@ -15,4 +15,7 @@
   shell: 
    free_form=sudo ./gulp
    chdir={{ site_root_dir }}/node_modules/.bin
+- name: NPM| restart Nginx with new config and site
+  service=nginx
+  state=restarted
 #Created by Punko <Punkoivan@yandex.ru> 16.02.16
