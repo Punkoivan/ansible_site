@@ -18,7 +18,7 @@
   service:
    name=nginx
    state=started
-#- name: include other playbooks 
 - include: gitclone.yml
 - include: nginx_conf.yml
 - include: npm.yml
+#Created by Punko <Punkoivan@yandex.ru> on 16.02.16
