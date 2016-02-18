@@ -1,17 +1,18 @@
 ---
-- name: installing npm on node
+- name: NPM| installing on node
   apt:
    name=npm
    state=present
-- name: installing npm libs from package.json
+- name: NPM| installing libs from package.json
   npm:
    path={{ site_root_dir }}
-- name: set symlink
+- name: NPM| set symlink
   file:
    src=/usr/bin/nodejs
    dest=/usr/bin/node
    state=link
-- name: gulp installation
+- name: NPM| gulp installation
   shell: 
    free_form=sudo ./gulp
    chdir={{ site_root_dir }}/node_modules/.bin
+#Created by Punko <Punkoivan@yandex.ru> 16.02.16
