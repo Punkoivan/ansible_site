@@ -8,7 +8,7 @@
   with_items:
    - { state: absent}
    - { state: directory }
-- name: Gitclone
+- name: Git| clone
   git:
    repo=https://github.com/anechka/portfolio-site.git
    dest={{ site_root_dir }}
