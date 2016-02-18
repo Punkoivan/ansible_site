@@ -1,25 +1,17 @@
 ---
-- name: copy main config into config folder
-  template:
-   src=nginx.conf.j2
-   dest={{ nginx_config_dir }}/nginx.conf
-- name: create site-available dir
-  file:    
-   path={{ nginx_config_dir }}/sites-available
-   state=directory
-- name: create site-enabled dir
-  file:    
-   path={{ nginx_config_dir }}/sites-enabled
-   state=directory
-- name: copy ane4k.in config into site-available folder
-  template:
-   src=ane4k.in.j2
-   dest={{ nginx_config_dir }}/sites-available/ane4k.in
-- name: copy anya.site into site-available folder
-  template:
-   src=anya.site.j2
-   dest={{ nginx_config_dir }}/sites-available/anya.site
-- name: set correct permission for file to use by nginx
+- name: NGINX | copy main + hosts configs
+  template: src={{ item.src  }} dest={{ item.dest  }}
+  with_tems:
+   - { src: 'nginx.con.j2', dest: {{ nginx_config_dir }}/nginx.conf }   
+   - { src: 'ane4k.in.j2', dest: {{ nginx_config_dir }}/sites-available/ane4k.in }
+   - { src: 'anya.site', dest: {{ nginx_config_dir }}/sites-available/anya.site }
+- name: NGINX| mkdir site-available/enabled and del default config
+  file: path={{ item.path }} state={{ item.state}}   
+  with_items:
+   - { path: '{{ nginx_config_dir }}/sites-available', state: 'directory' }
+   - { path: '{{ nginx_config_dir }}/sites-enabled', state: 'directory' }
+   - { path: '{{ site_root_dir }}/nginx-config', state: 'absent' }
+- name: NGINX| set correct permission for site file
   file:
    path={{ site_root_dir }}
    state=directory
@@ -27,17 +19,9 @@
    group={{ nginx_group }}
    mode=0755
    recurse=yes
-- name: delete nginx-config dir from site_root_folder
-  file:
-    path={{ site_root_dir }}/nginx-config
-    state=absent
-- name: create symlink to sites-enabled
-  file:
-   src={{ nginx_config_dir }}/sites-available/ane4k.in
-   dest={{ nginx_config_dir }}/sites-enabled/ane4k.in
-   state=link
-- name: create symlink to sites-enabled
-  file:
-   src={{ nginx_config_dir }}/sites-available/ane4k.in
-   dest={{ nginx_config_dir }}/sites-enabled/ane4k.in
-   state=link
+- name: create symlink to sites-enabled for anya.site and ane4k.in
+  file: src={{ item.src }} dest={{ item.dest }} state=link
+  with_item: 
+   - { src={{ nginx_config_dir }}/sites-available/ane4k.in, dest={{ nginx_config_dir }}/sites-enabled/ane4k.in }
+   - { src={{ nginx_config_dir }}/sites-available/anya.site, dest={{ nginx_config_dir }}/sites-enabled/anya.site }
+#Created by Punko <Punkoivan@yandex.ru> 16.02.16
