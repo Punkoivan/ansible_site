@@ -6,7 +6,7 @@
 - name: Git| rm dir with default site, mkdir for repo
   file: name={{ site_root_dir }} state={{ item.state }}
   with_items:
-   - { state: absent}
+   - { state: absent }
    - { state: directory }
 - name: Git| clone
   git:
