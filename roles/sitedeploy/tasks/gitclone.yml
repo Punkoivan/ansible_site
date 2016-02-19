@@ -10,6 +10,6 @@
    - { state: directory }
 - name: Git| clone
   git:
-   repo=https://github.com/anechka/portfolio-site.git
+   repo={{ git_repo }}
    dest={{ site_root_dir }}
 #Created by Punko <Punkoivan@yandex.ru> 16.02.16
