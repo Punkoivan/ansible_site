@@ -7,10 +7,10 @@
      repo={{ git_repo }}   
      dest={{ site_root_dir }}
      force=yes
-  - name: del nginx-conf
-    file:
-     path={{ site_root_dir }}/nginx-config
-     state=absent
+#  - name: del nginx-conf
+#    file:
+#     path={{ site_root_dir }}/nginx-config
+#     state=absent
   - name: Gulp 
     shell: 
      free_form=sudo ./gulp
