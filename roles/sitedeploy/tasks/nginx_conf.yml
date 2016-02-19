@@ -1,10 +1,10 @@
 ---
 - name: Nginx| copy main + hosts configs
   template: src={{ item.src  }} dest={{ item.dest  }}
-  with_tems:
-   - { src: 'nginx.con.j2', dest: {{ nginx_config_dir }}/nginx.conf }   
-   - { src: 'ane4k.in.j2', dest: {{ nginx_config_dir }}/sites-available/ane4k.in }
-   - { src: 'anya.site', dest: {{ nginx_config_dir }}/sites-available/anya.site }
+  with_items:
+   - { src: 'nginx.con.j2', dest: '{{ nginx_config_dir }}/nginx.conf' }   
+   - { src: 'ane4k.in.j2', dest: '{{ nginx_config_dir }}/sites-available/ane4k.in' }
+   - { src: 'anya.site', dest: '{{ nginx_config_dir }}/sites-available/anya.site' }
 - name: Nginx| mkdir site-available/enabled and del default config
   file: path={{ item.path }} state={{ item.state}}   
   with_items:
@@ -21,7 +21,7 @@
    recurse=yes
 - name: Nginx| create symlink to sites-enabled for anya.site and ane4k.in
   file: src={{ item.src }} dest={{ item.dest }} state=link
-  with_item: 
-   - { src={{ nginx_config_dir }}/sites-available/ane4k.in, dest={{ nginx_config_dir }}/sites-enabled/ane4k.in }
-   - { src={{ nginx_config_dir }}/sites-available/anya.site, dest={{ nginx_config_dir }}/sites-enabled/anya.site }
+  with_items: 
+   - { src: '{{ nginx_config_dir }}/sites-available/ane4k.in', dest: '{{ nginx_config_dir }}/sites-enabled/ane4k.in' }
+   - { src: '{{ nginx_config_dir }}/sites-available/anya.site', dest: '{{ nginx_config_dir }}/sites-enabled/anya.site' }
 #Created by Punko <Punkoivan@yandex.ru> 16.02.16
