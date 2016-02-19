@@ -1,5 +1,5 @@
 ---
-- hosts: media_34555
+- hosts: all 
   sudo: yes
   tasks:
   - name: git checkout from remote repo 
