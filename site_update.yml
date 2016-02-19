@@ -9,7 +9,7 @@
      force=yes
   - name: del nginx-conf
     file:
-     path={{ site_dir_root }}/nginx-config
+     path={{ site_root_dir }}/nginx-config
      state=absent
   - name: Gulp 
     shell: 
