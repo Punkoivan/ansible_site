@@ -12,4 +12,5 @@
   git:
    repo={{ git_repo }}
    dest={{ site_root_dir }}
+   force=yes
 #Created by Punko <Punkoivan@yandex.ru> 16.02.16
