@@ -1,7 +1,12 @@
 ---
 - name: installing Nginx and deploy site from git
-  hosts: media_34555 
-  become: yes
+  hosts: all 
+#Uncomment next string if you ssh into host as sudoser, not root.
+#and you should be sure that you have correct ansible_become_pass
+#in host_vars/host_name.yml file
+#or run playbooks with -K command-line arg.
+
+#  become: yes
   roles:
    - sitedeploy
 #Created by Punko <Punkoivan@yandex.ru> on 16.02.16
