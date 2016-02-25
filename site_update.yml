@@ -1,6 +1,7 @@
 ---
 - hosts: all 
-  become: yes
+#  become: yes
+#uncomment this if your ansible_user != root. Also check ansible_become_pass in host_name.yml
   tasks:
   - name: git checkout from remote repo 
     git:
