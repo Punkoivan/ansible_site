@@ -12,8 +12,8 @@
    dest=/usr/bin/node
    state=link
 - name: NPM| gulp installation
-  shell: 
-   free_form=sudo ./gulp
+  shell:   #if your ansible_user != root, change "free_form=./gulp" ==> "free_form=sudo ./gulp 
+   free_form=./gulp
    chdir={{ site_root_dir }}/node_modules/.bin
   notify: 
    - restart nginx

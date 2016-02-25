@@ -1,2 +1,3 @@
-[media_34555]
-159.224.201.44:34555
+#change to your group and your domain
+[localhost_group]
+127.0.0.1
