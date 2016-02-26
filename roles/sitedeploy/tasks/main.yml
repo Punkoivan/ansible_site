@@ -1,4 +1,6 @@
 ---
+- name: Nginx| Dist upgrade to latest #May be it good idea move this task after apt update
+- apt: upgrade=dist
 - name: Nginx| Add apt-key
   apt_key:
    url=http://nginx.org/keys/nginx_signing.key
