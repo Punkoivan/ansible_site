@@ -1,4 +1,4 @@
-ansible_ssh_user root:
+ansible_ssh_user: user
 ansible_port: 22
 ansible_ssh_pass:
 distrfamily: "{{ ansible_distribution | lower }}"
@@ -8,4 +8,4 @@ nginx_user: www-data
 nginx_group: www-data
 nginx_config_dir: /etc/nginx
 git_repo: https://github.com/anechka/portfolio-site
-ansible_become_pass: debian
+ansible_become_pass: user
