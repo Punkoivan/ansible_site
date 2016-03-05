@@ -3,8 +3,6 @@
  # one tasks
 #- name: gather facts from node     
 #   setup:
-#- name: Nginx| Dist upgrade to latest
-#  apt: upgrade=dist
 - name: Nginx| Add apt-key
   apt_key:
    url=http://nginx.org/keys/nginx_signing.key
