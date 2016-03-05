@@ -1,6 +1,10 @@
 ---
-- name: Nginx| Dist upgrade to latest #May be it good idea move this task after apt update
-- apt: upgrade=dist
+ #If you disable pre_tasks, also comment this
+ # one tasks
+#- name: gather facts from node     
+#   setup:
+#- name: Nginx| Dist upgrade to latest
+#  apt: upgrade=dist
 - name: Nginx| Add apt-key
   apt_key:
    url=http://nginx.org/keys/nginx_signing.key
@@ -13,6 +17,9 @@
   apt:
    name=nginx 
    update_cache=yes
+- name: Nginx| distr upgrade
+  apt: 
+   upgrade=dist
 - name: Nginx| start
   service:
    name=nginx
