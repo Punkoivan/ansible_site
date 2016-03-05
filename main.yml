@@ -6,14 +6,14 @@
 #setup module. Please, see tasks/main.yml
 #But if you sure that python is installed, just comment next string
 
-  gather_facts: False
+  #gather_facts: False
 #Uncomment next string if you ssh into host as sudoser, not root.
 #and you should be sure that you have correct ansible_become_pass
 #in host_vars/host_name.yml file
 #or run playbooks with -K command-line arg.
 #  become: yes
-  pre_tasks:
-   - raw: apt-get -y install python-minimal
+ # pre_tasks:
+ #  - raw: apt-get -y install python-minimal
 
   roles:
    - sitedeploy
