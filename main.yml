@@ -1,12 +1,20 @@
 ---
 - name: installing Nginx and deploy site from git
-  hosts: all 
+  hosts: all
+ #If host doesn't have installed python we need to
+#disable gathering facts, install python-minimal via raw module and then run
+#setup module. Please, see tasks/main.yml
+#But if you sure that python is installed, just comment next string
+
+  gather_facts: False
 #Uncomment next string if you ssh into host as sudoser, not root.
 #and you should be sure that you have correct ansible_become_pass
 #in host_vars/host_name.yml file
 #or run playbooks with -K command-line arg.
-
 #  become: yes
+  pre_tasks:
+   - raw: apt-get -y install python-minimal
+
   roles:
    - sitedeploy
 #Created by Punko <Punkoivan@yandex.ru> on 16.02.16
